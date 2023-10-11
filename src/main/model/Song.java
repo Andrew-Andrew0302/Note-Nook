@@ -1,6 +1,7 @@
 package model;
 
 public class Song {
+    private int id; // song id
     private final String name; // Song Title
     private final String artist; // Song Artist
     private final String genre; // Genre Of Song
@@ -8,7 +9,8 @@ public class Song {
 
 
     // Constructor
-    public Song(String name, String artist, String genre, int duration) {
+    public Song(int id, String name, String artist, String genre, int duration) {
+        this.id = id;
         this.name = name;
         this.artist = artist;
         this.genre = genre;
@@ -17,6 +19,10 @@ public class Song {
     }
 
     // Getter Methods
+
+    public int getId() {
+        return this.id;
+    }
 
     public String getName() {
         return this.name;

@@ -11,8 +11,8 @@ class SongTest {
 
     @BeforeEach
     public void runBefore() {
-        test1 = new Song("24 Hours", "Anthony Russo", "Pop", 150);
-        test2 = new Song("Trippin", "Adam Haliday", "Pop", 200);
+        test1 = new Song(1,"24 Hours", "Anthony Russo", "Pop", 150);
+        test2 = new Song(2,"Trippin", "Adam Haliday", "Pop", 200);
     }
 
     @Test
@@ -27,5 +27,6 @@ class SongTest {
     public void multipleSongConstructors() {
         assertEquals("24 Hours", test1.getName());
         assertEquals("Trippin", test2.getName());
+        assertEquals(2, test2.getId());
     }
 }

@@ -26,37 +26,59 @@ public class SongLibrary {
     }
 
     // MODIFIES: this
-    // EFFECTS: add a song to the song library
+    // EFFECTS: add a song to the song library if the song is not already in the library.
     public void addSong(Song song) {
         songs.add(song);
+    }
+
+    public List<Song> viewSong() {
+        return songs;
     }
 
     // REQUIRES: songs.size() > 0
     // MODIFIES: this
     // EFFECTS: remove a song from the song library
-    public void removeSong(Song song) {
-        songs.remove(song);
+    public void removeSong(String name) {
+        for (Song s : songs) {
+            if (s.getName() == name) {
+                songs.remove(s);
+                break;
+            }
+        }
+    }
+
+    // REQUIRES: songs.size() > 0
+    // EFFECTS: Returns a random song from the library
+    public Song getRandomSong() {
+        Random random = new Random();
+        int randomIndex = random.nextInt(songs.size());
+        return songs.get(randomIndex);
     }
 
 
     // REQUIRES: songs.size() > 0
     // EFFECTS: Picks a random song to play in the song library and add it
     // to a list and that would be the order the songs are played in
-    public List<Song> shuffle() {
-        Random ran = new Random();
-        List<Song> playedSongs = new ArrayList<>();
-        while (songs.size() > 0) {
-            int pick = ran.nextInt(songs.size());
-            songs.remove(pick);
-            playedSongs.add(songs.get(pick));
-        }
-        return playedSongs;
-    }
+    // public List<Song> shuffle() {
+    //    Random ran = new Random();
+    //    List<Song> playedSongs = new ArrayList<>();
+     //   while (songs.size() > 0) {
+      //      int pick = ran.nextInt(songs.size());
+      //      songs.remove(pick);
+      //      playedSongs.add(songs.get(pick));
+      //  }
+      //  return playedSongs;
+ //   }
+
 
     // REQUIRES: songs.size() > 0
     // EFFECTS: plays the first song in the song library
     public Song play() {
         return songs.get(0);
+    }
+
+    public String getAlbum() {
+        return this.album;
     }
 
 }
