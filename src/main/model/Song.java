@@ -1,5 +1,7 @@
 package model;
 
+// Represents a song that has song characteristics
+// such as the song id, name, artist, genre and duration of song
 public class Song {
     private int id; // song id
     private final String name; // Song Title

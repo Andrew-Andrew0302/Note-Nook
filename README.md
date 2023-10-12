@@ -17,10 +17,9 @@ a song library would make it much easier to keep note of songs I like offline.
 
 ## User Stories:
 - As a user, I want to be able to add **songs** to my *playlists*.
-- As a user, I want to be able to make an arbitrary number of *playlists*.
+- As a user, I want to be able to **remove** songs from the *playlists*.
 - As a user, I want to be able to view my songs in the *playlists*.
-- As a user, I want to be able to **shuffle** through my *playlist*.
-- As a user, I want to be able to **replay** my songs on a *loop*.
-- As a user, I want to be able to **Queue** whichever songs I want in any particular order.
+- As a user, I want to be able to **play** my song Library.
+- As a user, I want to be able to **randomize** the songs that I play.
 
  

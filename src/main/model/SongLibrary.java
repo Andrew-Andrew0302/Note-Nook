@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
+// Represents the songs in the song library that has an Album name
 public class SongLibrary {
     private final List<Song> songs;
     private final String album;

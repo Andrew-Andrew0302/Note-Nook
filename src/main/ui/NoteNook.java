@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class NoteNook {
     private SongLibrary songLibrary;
     private Scanner input;
-    private Song song;
 
     // EFFECTS: runs the NoteNook application
     public NoteNook() {
