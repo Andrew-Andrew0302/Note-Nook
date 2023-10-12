@@ -77,9 +77,13 @@ public class NoteNook {
 
     // EFFECTS: views the list of songs in the album
     public void doViewSong() {
-        System.out.println("Songs in the library: ");
-        for (Song s : songLibrary.viewSong()) {
-            System.out.println(s.getName());
+        if (songLibrary.getSongsSize() == 0) {
+            System.out.println("No Songs in the Library!");
+        } else {
+            System.out.println("Songs in the library: ");
+            for (Song s : songLibrary.viewSong()) {
+                System.out.println(s.getName());
+            }
         }
     }
 

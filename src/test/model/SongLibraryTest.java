@@ -85,6 +85,12 @@ public class SongLibraryTest {
         assertEquals(song1, list1.getRandomSong());
     }
 
+    @Test
+    public void testRemoveNoSong() {
+        list1.removeSong("Less of You");
+        assertEquals(1, list1.getSongsSize());
+    }
+
 
 
 }
