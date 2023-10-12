@@ -9,6 +9,8 @@ public class SongLibrary {
     private final List<Song> songs;
     private final String album;
 
+    // REQUIRES: album has a non-zero length
+    // EFFECTS: name of album is set as album
     public SongLibrary(String album) {
         songs = new ArrayList<>();
         this.album = album;
@@ -73,8 +75,9 @@ public class SongLibrary {
 
     // REQUIRES: songs.size() > 0
     // EFFECTS: plays the first song in the song library
-    public Song play() {
-        return songs.get(0);
+    public String play() {
+        Song s = songs.get(0);
+        return s.getName();
     }
 
     public String getAlbum() {
