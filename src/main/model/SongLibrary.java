@@ -33,6 +33,7 @@ public class SongLibrary {
         songs.add(song);
     }
 
+    // EFFECTS: returns the list of songs in the song library
     public List<Song> viewSong() {
         return songs;
     }

@@ -116,19 +116,31 @@ public class NoteNook {
     }
 
 
+    // MODIFIES: This
+    // EFFECTS: Remove a song from the song library, user needs to input the Song name.
     public void doRemoveSong() {
+
         System.out.println("Please enter the following details:\nTitle of Song:");
         String song = input.next();
+        for (Song s : songLibrary.viewSong()) {
+            if (s.getName() == song) {
+                songLibrary.removeSong(song);
+                System.out.println("Song removed!");
+                return;
+            }
+        }
 
-        songLibrary.removeSong(song);
+        System.out.println("Song Not Found in Song Library!");
     }
 
+    // EFFECTS: Play a random song from the songLibrary
     public void doPlayRandomSong() {
         Song ran = songLibrary.getRandomSong();
         String name = ran.getName();
         System.out.println("Random Song: " + name);
     }
 
+    // EFFECTS: Play the first song in the songLibrary
     public void doPlayFirstSong() {
         System.out.println("Song Title: " + songLibrary.play());
     }
