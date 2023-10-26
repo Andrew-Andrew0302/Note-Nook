@@ -1,17 +1,27 @@
 package ui;
 
+import persistence.JsonReader;
+import persistence.JsonWriter;
 import model.Song;
 import model.SongLibrary;
 
+import java.io.FileNotFoundException;
+import java.util.Objects;
 import java.util.Scanner;
+import java.io.IOException;
 
 // run NoteNook app
 public class NoteNook {
+    private static final String JSON_STORE = "./data/SongLibrary.json";
     private SongLibrary songLibrary;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the NoteNook application
-    public NoteNook() {
+    public NoteNook() throws FileNotFoundException {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runNoteNook();
     }
 
@@ -47,6 +57,8 @@ public class NoteNook {
         System.out.println("\t3 -> Remove Song");
         System.out.println("\t4 -> Play Random Song");
         System.out.println("\t5 -> Play First Song");
+        System.out.println("\ts -> save Song Library to file");
+        System.out.println("\tl -> load Song Library from file");
         System.out.println("\tq -> Quit");
     }
 
@@ -69,6 +81,10 @@ public class NoteNook {
             doPlayRandomSong();
         } else if (command.equals("5")) {
             doPlayFirstSong();
+        } else if (command.equals("s")) {
+            saveSongLibrary();
+        } else if (command.equals("l")) {
+            loadSongLibrary();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -122,7 +138,7 @@ public class NoteNook {
         System.out.println("Please enter the following details:\nTitle of Song:");
         String song = input.next();
         for (Song s : songLibrary.viewSong()) {
-            if (s.getName() == song) {
+            if (Objects.equals(s.getName(), song)) {
                 songLibrary.removeSong(song);
                 System.out.println("Song removed!");
                 return;
@@ -142,6 +158,29 @@ public class NoteNook {
     // EFFECTS: Play the first song in the songLibrary
     public void doPlayFirstSong() {
         System.out.println("Song Title: " + songLibrary.play());
+    }
+
+    // EFFECTS: saves the SongLibrary to file
+    private void saveSongLibrary() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(songLibrary);
+            jsonWriter.close();
+            System.out.println("Saved " + songLibrary.getAlbum() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads SongLibrary from file
+    private void loadSongLibrary() {
+        try {
+            songLibrary = jsonReader.read();
+            System.out.println("Loaded " + songLibrary.getAlbum() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
 }

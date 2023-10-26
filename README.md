@@ -21,5 +21,7 @@ a song library would make it much easier to keep note of songs I like offline.
 - As a user, I want to be able to view my songs in the *playlists*.
 - As a user, I want to be able to **play** my song Library.
 - As a user, I want to be able to **randomize** the songs that I play.
+- As a user, when I select the quit option, i want to be reminded to be able to save my song library.
+- As a user, when I start the application, I want to be given the option to load my song library.
 
  

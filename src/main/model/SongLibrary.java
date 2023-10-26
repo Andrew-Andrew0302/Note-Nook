@@ -1,11 +1,16 @@
 package model;
 
+import persistence.Writable;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 // Represents the songs in the song library that has an Album name
-public class SongLibrary {
+public class SongLibrary implements Writable {
     private final List<Song> songs;
     private final String album;
 
@@ -43,7 +48,7 @@ public class SongLibrary {
     // EFFECTS: remove a song from the song library
     public void removeSong(String name) {
         for (Song s : songs) {
-            if (s.getName() == name) {
+            if (Objects.equals(s.getName(),name)) {
                 songs.remove(s);
                 break;
             }
@@ -83,6 +88,25 @@ public class SongLibrary {
 
     public String getAlbum() {
         return this.album;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("album", album);
+        json.put("Songs", songsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns songs in this SongLibrary as a JSON array
+    private JSONArray songsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Song s : songs) {
+            jsonArray.put(s.toJson());
+        }
+
+        return jsonArray;
     }
 
 }

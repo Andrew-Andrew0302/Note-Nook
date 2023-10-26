@@ -1,8 +1,11 @@
 package model;
 
+import persistence.Writable;
+import org.json.JSONObject;
+
 // Represents a song that has song characteristics
 // such as the song id, name, artist, genre and duration of song
-public class Song {
+public class Song implements Writable {
     private int id; // song id
     private final String name; // Song Title
     private final String artist; // Song Artist
@@ -40,6 +43,17 @@ public class Song {
 
     public int getDuration() {
         return this.duration;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("id",id);
+        json.put("name", name);
+        json.put("artist", artist);
+        json.put("genre", genre);
+        json.put("duration", duration);
+        return json;
     }
 
 }

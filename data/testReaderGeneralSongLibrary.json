@@ -1,0 +1,17 @@
+{
+  "album": "Ripley",
+  "Songs": [{
+    "duration": 250,
+    "artist": "Keshi",
+    "name": "Skeletons",
+    "genre": "Pop",
+    "id": 1
+  },
+    {
+      "duration": 200,
+      "artist": "Keshi",
+      "name": "Less Of You",
+      "genre": "Pop",
+      "id": 2
+    }]
+}

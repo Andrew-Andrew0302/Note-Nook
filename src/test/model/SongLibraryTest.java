@@ -69,8 +69,8 @@ public class SongLibraryTest {
 
     @Test
     public void testPlay() {
-        assertEquals(song1, list2.play());
-        assertEquals(song1, list1.play());
+        assertEquals("Beside You", list2.play());
+        assertEquals("Beside You", list1.play());
     }
 
     @Test
