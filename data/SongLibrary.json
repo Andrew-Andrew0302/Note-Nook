@@ -2,17 +2,17 @@
     "album": "Ripley",
     "Songs": [
         {
-            "duration": 200,
-            "artist": "Keshi",
-            "name": "Less Of You",
+            "duration": 1000,
+            "artist": "Keep",
+            "name": "Bod",
             "genre": "Pop",
             "id": 1
         },
         {
-            "duration": 250,
-            "artist": "Keshi",
-            "name": "Skeletons",
-            "genre": "pop",
+            "duration": 500,
+            "artist": "Harsh",
+            "name": "Harsh",
+            "genre": "Rock",
             "id": 2
         }
     ]
