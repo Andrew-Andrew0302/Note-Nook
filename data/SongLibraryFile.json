@@ -1,0 +1,10 @@
+{
+    "album": "Ripley's Song Library",
+    "Songs": [{
+        "duration": 1000,
+        "artist": "po",
+        "name": "ip",
+        "genre": "op",
+        "id": 1
+    }]
+}

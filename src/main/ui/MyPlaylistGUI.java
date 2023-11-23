@@ -2,20 +2,32 @@ package ui;
 
 import model.Song;
 import model.SongLibrary;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class MyPlaylistGUI extends JFrame implements ActionListener {
+
+    private static final String songLibraryFile = "./data/SongLibraryFile.json";
 
     private SongLibrary songLibrary;
     private DefaultTableModel tableModel;
     private JTable songTable;
+
     private JButton addButton;
     private JButton removeButton;
+    private JButton saveButton;
+    private JButton loadButton;
+
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
 
     public MyPlaylistGUI() {
@@ -26,12 +38,15 @@ public class MyPlaylistGUI extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(600, 400);
 
+        jsonWriter = new JsonWriter(songLibraryFile);
+        jsonReader = new JsonReader(songLibraryFile);
+
 
         setLayout(new BorderLayout());
         add(new JScrollPane(songTable), BorderLayout.CENTER);
 
         initializeButtons();
-        addButtons(addButton, removeButton);
+        addButtons(addButton, removeButton, saveButton, loadButton);
         addActionToButtons();
 
 
@@ -53,6 +68,8 @@ public class MyPlaylistGUI extends JFrame implements ActionListener {
     public void initializeButtons() {
         addButton = new JButton("Add Song");
         removeButton = new JButton("Remove Song");
+        saveButton = new JButton("Save Current Songs");
+        loadButton = new JButton("Load Previous Songs");
     }
 
     public void addActionToButtons() {
@@ -60,10 +77,14 @@ public class MyPlaylistGUI extends JFrame implements ActionListener {
         addButton.setActionCommand("Add Song");
         removeButton.addActionListener(this);
         removeButton.setActionCommand("Remove Song");
+        saveButton.addActionListener(this);
+        saveButton.setActionCommand("Save Current Songs");
+        loadButton.addActionListener(this);
+        loadButton.setActionCommand("Load Previous Songs");
     }
 
-    public void addButtons(JButton addButton, JButton removeButton) {
-        JPanel buttonPanel = new JPanel();
+    public void addButtons(JButton addButton, JButton removeButton, JButton saveButton, JButton loadButton) {
+        JPanel buttonPanel = new JPanel(new GridLayout(2,2));
         buttonPanel.setBackground(Color.lightGray);
 
         // Add some spacing between the image and buttons
@@ -71,6 +92,8 @@ public class MyPlaylistGUI extends JFrame implements ActionListener {
 
         addButton(addButton, buttonPanel);
         addButton(removeButton, buttonPanel);
+        addButton(saveButton, buttonPanel);
+        addButton(loadButton, buttonPanel);
         add(buttonPanel, BorderLayout.SOUTH);
 
         setVisible(true);
@@ -81,9 +104,12 @@ public class MyPlaylistGUI extends JFrame implements ActionListener {
             addSong();
         } else if (e.getActionCommand().equals("Remove Song")) {
             removeSong();
+        } else if (e.getActionCommand().equals("Save Current Songs")) {
+            saveSongLibrary();
+        } else if (e.getActionCommand().equals("Load Previous Songs")) {
+            loadSongLibrary();
         }
     }
-
 
 
     public void addSong() {
@@ -115,6 +141,29 @@ public class MyPlaylistGUI extends JFrame implements ActionListener {
         }
     }
 
+    private void saveSongLibrary() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(songLibrary);
+            jsonWriter.close();
+            updateTable();
+            JOptionPane.showMessageDialog(this, "Saved the songs to " + songLibraryFile);
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "Unable to write to file: " + songLibraryFile);
+        }
+    }
+
+
+    private void loadSongLibrary() {
+        try {
+            songLibrary = jsonReader.read();
+            updateTable();
+            JOptionPane.showMessageDialog(this, "Loaded Songs from : " + songLibraryFile);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Unable to read from file: " + songLibraryFile);
+        }
+    }
+
     public void updateTable() {
         tableModel.setRowCount(0);
         for (Song song : songLibrary.viewSong()) {
@@ -122,6 +171,4 @@ public class MyPlaylistGUI extends JFrame implements ActionListener {
                     song.getGenre(), song.getDuration()});
         }
     }
-
-
 }

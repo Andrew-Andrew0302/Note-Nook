@@ -15,12 +15,6 @@ public class NoteNookGUI extends JFrame implements ActionListener {
 
     private JTextField filePathField;
 
-    private JButton addButton;
-    private JButton removeButton;
-    private JButton randomButton;
-    private JButton loopButton;
-    private JButton saveButton;
-    private JButton loadButton;
     private JButton viewButton;
 
     private JFileChooser fileChooser;
@@ -39,7 +33,7 @@ public class NoteNookGUI extends JFrame implements ActionListener {
         addImageToLabel(pictureImage);
 
         initializeMenuButtons();
-        addButtons(viewButton, addButton, removeButton, randomButton, loopButton, saveButton, loadButton);
+        addButtons(viewButton);
         addActionToButtons();
 
 
@@ -77,8 +71,7 @@ public class NoteNookGUI extends JFrame implements ActionListener {
     }
 
     // EFFECTS: Calls the addButton method for each argument
-    public void addButtons(JButton viewButton, JButton playButton, JButton pauseButton, JButton chooseButton,
-                           JButton loopButton, JButton saveButton, JButton loadButton) {
+    public void addButtons(JButton viewButton) {
 
         JPanel buttonPanel = new JPanel(new GridLayout(0, 2));
         buttonPanel.setBackground(Color.lightGray);
@@ -87,12 +80,6 @@ public class NoteNookGUI extends JFrame implements ActionListener {
         buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         addButton(viewButton, buttonPanel);
-        addButton(playButton, buttonPanel);
-        addButton(pauseButton, buttonPanel);
-        addButton(chooseButton, buttonPanel);
-        addButton(loopButton, buttonPanel);
-        addButton(saveButton, buttonPanel);
-        addButton(loadButton, buttonPanel);
 
         mainMenu.add(buttonPanel);
         setVisible(true);
@@ -102,12 +89,6 @@ public class NoteNookGUI extends JFrame implements ActionListener {
     // EFFECTS: Initializes main menu buttons and gives them labels
     public void initializeMenuButtons() {
         viewButton = new JButton("View My Playlist");
-        addButton = new JButton("Add Song");
-        removeButton = new JButton("Remove Song");
-        randomButton = new JButton("Random Song Of The Day");
-        loopButton = new JButton("Loop");
-        saveButton = new JButton("Save Current Songs");
-        loadButton = new JButton("Load Previous Songs");
     }
 
     // EFFECTS: Creates the welcome text label and adds it to the main menu panel
@@ -133,19 +114,7 @@ public class NoteNookGUI extends JFrame implements ActionListener {
     // EFFECTS: Sets each button to their respective action
     public void addActionToButtons() {
         viewButton.addActionListener(this);
-        addButton.setActionCommand("View My Playlist");
-        addButton.addActionListener(this);
-        addButton.setActionCommand("Add Song");
-        removeButton.addActionListener(this);
-        removeButton.setActionCommand("Remove Song");
-        randomButton.addActionListener(this);
-        randomButton.setActionCommand("Random Song Of The Day");
-        loopButton.addActionListener(this);
-        loopButton.setActionCommand("Loop");
-        saveButton.addActionListener(this);
-        saveButton.setActionCommand("Save Current Songs");
-        loadButton.addActionListener(this);
-        loadButton.setActionCommand("Load Previous Songs");
+        viewButton.setActionCommand("View My Playlist");
     }
 
 
@@ -155,12 +124,4 @@ public class NoteNookGUI extends JFrame implements ActionListener {
             new MyPlaylistGUI();
         }
     }
-
-
-
-
-    public static void main(String[] args) {
-        new NoteNookGUI();
-    }
-
 }
