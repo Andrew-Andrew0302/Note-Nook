@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-//
+
 public class NoteNookGUI extends JFrame implements ActionListener {
     private JPanel mainMenu;
     private JLabel library;
@@ -19,7 +19,7 @@ public class NoteNookGUI extends JFrame implements ActionListener {
 
     private JFileChooser fileChooser;
 
-
+    // Makes a New JFrame with different attributes
     public NoteNookGUI() {
         super("Note Nook");
         setDefaultCloseOperation(EXIT_ON_CLOSE);

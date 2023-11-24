@@ -26,15 +26,13 @@ a song library would make it much easier to keep note of songs I like offline.
 
 # Instructions for Grader
 
-- You can add a Song onto a Song Library by clicking "View Songs in Song Library" and filling out the song information 
+- You can add a Song onto a Song Library by clicking "View Playlist" and filling out the song information 
 then clicking "Add Song To Library".
-- You can remove a song by clicking "Remove this song?" button and clicking "Yes".
-- You can locate an image on the main screen or on the Song Library Page.
+- You can remove a song by clicking "Remove Song" button.
+- You can locate an image on the main screen Page.
 - You can save the application by clicking "Save the Current Songs".
-- You can reload the application by clicking "Load Songs".
+- You can reload the application by clicking "Load Previous Songs".
 - You can play a random song in the song library page by clicking "Play Random Song".
-- You can play the Songs in the order they were added by clicking "Play Songs".
-- You can pause the Song by pressing the "Pause" button.
-- You can resume the Song by pressing the "Resume" button.
+- You can go back to Main Menu page by clicking "Return to Main Menu" button.
 
  
