@@ -61,6 +61,8 @@ public class MyPlaylistGUI extends JFrame implements ActionListener {
 
         setLocationRelativeTo(null);
         setVisible(true);
+
+
     }
 
     // MODIFIES: this
@@ -237,4 +239,9 @@ public class MyPlaylistGUI extends JFrame implements ActionListener {
                     song.getGenre(), song.getDuration()});
         }
     }
+
+
+
+
+
 }

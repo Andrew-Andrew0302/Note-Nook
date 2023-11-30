@@ -1,10 +1,33 @@
 {
     "album": "Ripley's Song Library",
-    "Songs": [{
-        "duration": 1000,
-        "artist": "po",
-        "name": "ip",
-        "genre": "op",
-        "id": 1
-    }]
+    "Songs": [
+        {
+            "duration": 360,
+            "artist": "Keshi",
+            "name": "Less of You",
+            "genre": "Pop",
+            "id": 1
+        },
+        {
+            "duration": 200,
+            "artist": "Jaylon Ashaun",
+            "name": "Strawberry and Wine",
+            "genre": "Pop",
+            "id": 2
+        },
+        {
+            "duration": 300,
+            "artist": "Alexander 23",
+            "name": "Girl",
+            "genre": "Pop",
+            "id": 3
+        },
+        {
+            "duration": 1000,
+            "artist": "200",
+            "name": "1000",
+            "genre": "200",
+            "id": 4
+        }
+    ]
 }

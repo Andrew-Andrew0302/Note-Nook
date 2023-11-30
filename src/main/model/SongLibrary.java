@@ -36,6 +36,11 @@ public class SongLibrary implements Writable {
     // EFFECTS: add a song to the song library if the song is not already in the library.
     public void addSong(Song song) {
         songs.add(song);
+        EventLog.getInstance().logEvent(new Event("Song Added: "
+                + " "
+                + song.getName()
+                + " by "
+                + song.getArtist()));
     }
 
     // EFFECTS: returns the list of songs in the song library
@@ -53,6 +58,7 @@ public class SongLibrary implements Writable {
                 break;
             }
         }
+        EventLog.getInstance().logEvent(new Event("Song Removed: " + name));
     }
 
     // REQUIRES: songs.size() > 0

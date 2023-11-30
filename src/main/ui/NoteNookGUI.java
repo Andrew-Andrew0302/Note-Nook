@@ -1,15 +1,20 @@
 package ui;
 
 
+import exceptions.LogException;
+import model.EventLog;
+import model.Event;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
-
-public class NoteNookGUI extends JFrame implements ActionListener {
+public class NoteNookGUI extends JFrame implements ActionListener, LogPrinter {
     private JPanel mainMenu;
     private JLabel library;
 
@@ -36,13 +41,55 @@ public class NoteNookGUI extends JFrame implements ActionListener {
         addButtons(viewButton);
         addActionToButtons();
 
+        addPrintLogWindowListener();
+
 
         fileChooser = new JFileChooser(".");
         fileChooser.setFileFilter(new FileNameExtensionFilter("WAV Files", "wav"));
 
         setLocationRelativeTo(null);
         mainMenu.setVisible(true);
+
+
     }
+
+    private void addPrintLogWindowListener() {
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                EventLog el = EventLog.getInstance();
+                try {
+                    printLog(el);
+                    dispose();
+                } catch (LogException ex) {
+                    System.out.println("Could not print the log");
+                    dispose();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void printLog(EventLog el) throws LogException {
+        for (Event next : el) {
+            System.out.println(next);
+        }
+    }
+
+//    //EFFECTS: prints the event logs onto console once application is closed
+//    public void eventLogs() {
+//        .setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+//        mainMenu.addWindowListener(new java.awt.event.WindowAdapter() {
+//            @Override
+//            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+//                for (Event e1: EventLog.getInstance()) {
+//                    System.out.println("\n" + e1.toString());
+//                }
+//                System.exit(0);
+//            }
+//        });
+//
+//    }
 
     // EFFECTS: Makes the main menu panel and changes the background color
     public void initializeMenu() {
@@ -52,6 +99,7 @@ public class NoteNookGUI extends JFrame implements ActionListener {
         library.setText("Available Songs");
         add(mainMenu);
     }
+
 
     // MODIFIES: this
     // EFFECTS: adds buttons to mainMenu
