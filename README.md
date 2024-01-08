@@ -35,4 +35,7 @@ then clicking "Add Song To Library".
 - You can play a random song in the song library page by clicking "Play Random Song".
 - You can go back to Main Menu page by clicking "Return to Main Menu" button.
 
+# Phase 4 Task 3
+- I could've added a 
+
  
